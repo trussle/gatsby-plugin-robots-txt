@@ -154,4 +154,32 @@ describe('onPostBuild', () => {
 
     expect(readContent(output)).toMatchSnapshot();
   });
+
+  it('should add disallowed urls fetched from GraphQL query to `robots.txt`', async () => {
+    const output = './robots-graphql-disallow-additions.txt';
+
+    await onPostBuild(
+      {
+        graphql() {
+          return Promise.resolve({
+            data: {
+              myPages: [{
+                url: "/bar"
+              }]
+            }
+          });
+        }
+      },
+      {
+        host: 'https://www.test.com',
+        sitemap: 'https://www.test.com/sitemap.xml',
+        policy: [{ userAgent: '*', disallow: ['/foo'] }, { userAgent: 'Googlebot' }],
+        output,
+        disallowQuery: `{ myPages: { url } }`,
+        disallowSerializer: ({ myPages }) => myPages.map(p => p.url)
+      }
+    );
+
+    expect(readContent(output)).toMatchSnapshot();
+  });
 });
