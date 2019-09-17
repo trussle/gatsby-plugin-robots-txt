@@ -59,7 +59,7 @@ export async function onPostBuild({ graphql }, pluginOptions) {
 
   if (
     !Object.prototype.hasOwnProperty.call(mergedOptions, 'host') ||
-    !Object.prototype.hasOwnProperty.call(mergedOptions,'sitemap')
+    !Object.prototype.hasOwnProperty.call(mergedOptions, 'sitemap')
   ) {
     const {
       site: {
@@ -71,7 +71,29 @@ export async function onPostBuild({ graphql }, pluginOptions) {
     mergedOptions.sitemap = url.resolve(siteUrl, 'sitemap.xml');
   }
 
-  const { policy, sitemap, host, output, configFile } = mergedOptions;
+  const {
+    policy,
+    sitemap,
+    host,
+    output,
+    configFile,
+    disallowQuery,
+    disallowSerializer
+  } = mergedOptions;
+
+  if (disallowQuery && disallowSerializer) {
+    const disallowUrls = disallowSerializer(
+      await runQuery(graphql, disallowQuery)
+    );
+
+    policy.forEach(p => {
+      if (Array.isArray(p.disallow)) {
+        p.disallow = p.disallow.concat(disallowUrls);
+      } else {
+        p.disallow = disallowUrls;
+      }
+    });
+  }
 
   const content = await robotsTxt({
     policy,

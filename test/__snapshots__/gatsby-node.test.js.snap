@@ -1,5 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`onPostBuild should add disallowed urls fetched from GraphQL query to \`robots.txt\` 1`] = `
+"User-agent: *
+Disallow: /foo
+Disallow: /bar
+
+User-agent: Googlebot
+Disallow: /bar
+Sitemap: https://www.test.com/sitemap.xml
+Host: https://www.test.com
+"
+`;
+
 exports[`onPostBuild should generate \`robots.txt\` using \`env\` options 1`] = `
 "User-agent: *
 Disallow: /

@@ -1,11 +1,6 @@
-[![NPM version](https://img.shields.io/npm/v/gatsby-plugin-robots-txt.svg)](https://www.npmjs.org/package/gatsby-plugin-robots-txt)
-[![Travis build status](https://travis-ci.org/mdreizin/gatsby-plugin-robots-txt.svg?branch=master)](https://travis-ci.org/mdreizin/gatsby-plugin-robots-txt)
-[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/ow75w9pjm7kf3wps/branch/master?svg=true)](https://ci.appveyor.com/project/mdreizin/gatsby-plugin-robots-txt/branch/master)
-[![Maintainability](https://api.codeclimate.com/v1/badges/03b12a836565bd04674c/maintainability)](https://codeclimate.com/github/mdreizin/gatsby-plugin-robots-txt/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/03b12a836565bd04674c/test_coverage)](https://codeclimate.com/github/mdreizin/gatsby-plugin-robots-txt/test_coverage)
-[![Dependency Status](https://img.shields.io/david/mdreizin/gatsby-plugin-robots-txt.svg)](https://david-dm.org/mdreizin/gatsby-plugin-robots-txt)
-[![Development Dependency Status](https://img.shields.io/david/dev/mdreizin/gatsby-plugin-robots-txt.svg)](https://david-dm.org/mdreizin/gatsby-plugin-robots-txt#info=devDependencies)
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmdreizin%2Fgatsby-plugin-robots-txt.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmdreizin%2Fgatsby-plugin-robots-txt?ref=badge_shield)
+# @trussle/gatsby-plugin-robots-txt
+
+Based on `mdreizin/gatsby-plugin-robots-txt`. Added options to fetch data from a GraphQL query and append it to the list of disallowed URLs.
 
 # gatsby-plugin-robots-txt
 
@@ -13,11 +8,7 @@
 
 ## Install
 
-`yarn add gatsby-plugin-robots-txt`
-
-or
-
-`npm install --save gatsby-plugin-robots-txt`
+`npm install --save @trussle/gatsby-plugin-robots-txt`
 
 ## How To Use
 
@@ -28,7 +19,7 @@ module.exports = {
   siteMetadata: {
     siteUrl: 'https://www.example.com'
   },
-  plugins: ['gatsby-plugin-robots-txt']
+  plugins: ['@trussle/gatsby-plugin-robots-txt']
 };
 ```
 
